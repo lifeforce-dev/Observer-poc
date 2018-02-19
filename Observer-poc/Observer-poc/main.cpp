@@ -35,7 +35,7 @@ public:
 
 	NetController::~NetController()
 	{
-		LOG_DEBUG("NetController destroyed.");
+		LOG_DEBUG_CONSOLE("NetController destroyed.");
 		NotifyObserversSafe([](NetworkObserver* o)
 		{
 			o->OnNetControllerDestroyed();
@@ -44,7 +44,7 @@ public:
 
 	void NetController::Update()
 	{
-		LOG_DEBUG("NetworkController data updated.");
+		LOG_DEBUG_CONSOLE("NetworkController data updated.");
 		NotifyObservers([](NetworkObserver* o)
 		{
 			o->OnUpdated();
@@ -53,7 +53,7 @@ public:
 
 	void NetController::ReceiveMessage()
 	{
-		LOG_DEBUG("NetworkController message received.");
+		LOG_DEBUG_CONSOLE("NetworkController message received.");
 		uint32_t type = 0;
 		NotifyObservers([type](NetworkObserver* o)
 		{
@@ -63,7 +63,7 @@ public:
 
 	void NetController::Shutdown()
 	{
-		LOG_DEBUG("NetController about to be destroyed.");
+		LOG_DEBUG_CONSOLE("NetController about to be destroyed.");
 		NotifyObserversSafe([](NetworkObserver* o)
 		{
 			o->OnNetControllerAboutToBeDestroyed();
@@ -86,21 +86,21 @@ public:
 
 	virtual void OnUpdated() override
 	{
-		LOG_DEBUG("ConfigProtoHandler Updated.");
+		LOG_DEBUG_CONSOLE("ConfigProtoHandler Updated.");
 	}
 	virtual void OnMessageReceived(uint32_t type) override
 	{
-		LOG_DEBUG("ConfigProtoHandler Message Received.");
+		LOG_DEBUG_CONSOLE("ConfigProtoHandler Message Received.");
 	}
 	virtual void OnNetControllerAboutToBeDestroyed() override
 	{
 		m_controller->RemoveObserver(this);
 		m_controller = nullptr;
-		LOG_DEBUG("ConfigProtoHandler Handling NetworkController About To Be Destroyed.");
+		LOG_DEBUG_CONSOLE("ConfigProtoHandler Handling NetworkController About To Be Destroyed.");
 	}
 	virtual void OnNetControllerDestroyed() override
 	{
-		LOG_DEBUG("ConfigProtoHandler handling NetworkController being destroyed");
+		LOG_DEBUG_CONSOLE("ConfigProtoHandler handling NetworkController being destroyed");
 	}
 
 private:
@@ -122,22 +122,22 @@ public:
 
 	virtual void OnUpdated() override
 	{
-		LOG_DEBUG("ActionProtoHandler Updated.");
+		LOG_DEBUG_CONSOLE("ActionProtoHandler Updated.");
 	}
 	virtual void OnMessageReceived(uint32_t type) override
 	{
 		
-		LOG_DEBUG("ActionProtoHandler Message Received.");
+		LOG_DEBUG_CONSOLE("ActionProtoHandler Message Received.");
 	}
 	virtual void OnNetControllerAboutToBeDestroyed() override
 	{
 		m_controller->RemoveObserver(this);
 		m_controller = nullptr;
-		LOG_DEBUG("ActionProtoHandler Handling NetworkController About To Be Destroyed.");
+		LOG_DEBUG_CONSOLE("ActionProtoHandler Handling NetworkController About To Be Destroyed.");
 	}
 	virtual void OnNetControllerDestroyed() override
 	{
-		LOG_DEBUG("ActionProtoHandler handling NetworkController being destroyed");
+		LOG_DEBUG_CONSOLE("ActionProtoHandler handling NetworkController being destroyed");
 	}
 
 private:
@@ -158,21 +158,21 @@ public:
 
 	virtual void OnUpdated() override
 	{
-		LOG_DEBUG("DataProtoHandler Updated.");
+		LOG_DEBUG_CONSOLE("DataProtoHandler Updated.");
 	}
 	virtual void OnMessageReceived(uint32_t type) override
 	{
-		LOG_DEBUG("DataProtoHandler Message Received.");
+		LOG_DEBUG_CONSOLE("DataProtoHandler Message Received.");
 	}
 	virtual void OnNetControllerAboutToBeDestroyed() override
 	{
 		m_controller->RemoveObserver(this);
 		m_controller = nullptr;
-		LOG_DEBUG("DataProtoHandler Handling NetworkController About To Be Destroyed.");
+		LOG_DEBUG_CONSOLE("DataProtoHandler Handling NetworkController About To Be Destroyed.");
 	}
 	virtual void OnNetControllerDestroyed() override
 	{
-		LOG_DEBUG("DataProtoHandler handling NetworkController being destroyed");
+		LOG_DEBUG_CONSOLE("DataProtoHandler handling NetworkController being destroyed");
 	}
 
 private:
